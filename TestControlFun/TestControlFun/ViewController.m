@@ -13,8 +13,7 @@
 @end
 
 @implementation ViewController
-@synthesize nameField;
-@synthesize numberField;
+
 
 - (void)viewDidLoad
 {
@@ -31,6 +30,10 @@
 - (void)viewDidUnload {
     [self setNameField:nil];
     [self setNumberField:nil];
+    [self setSliderLabel:nil];
+    [self setLeftSwitch:nil];
+    [self setRightSwitch:nil];
+    [self setDoSomeThingButton:nil];
     [super viewDidUnload];
 }
 - (IBAction)textFieldDoneEditing:(id)sender
@@ -40,9 +43,43 @@
 
 - (IBAction)backgroundTap:(id)sender
 {
-    [nameField resignFirstResponder];
-    [numberField resignFirstResponder];
+    [self.nameField resignFirstResponder];
+    [self.numberField resignFirstResponder];
 }
+
+- (IBAction)toggleControls:(UISegmentedControl *)sender
+{
+    if (sender.selectedSegmentIndex == kSwitchesSegmentIndex)
+    {
+        self.leftSwitch.hidden = NO;
+        self.rightSwitch.hidden = NO;
+        self.doSomeThingButton.hidden = YES;
+    }
+    else
+    {
+        self.leftSwitch.hidden = YES;
+        self.rightSwitch.hidden = YES;
+        self.doSomeThingButton.hidden = NO;
+    }
+}
+
+- (IBAction)switchChanged:(UISwitch *)sender
+{
+    BOOL setting = sender.isOn;
+    [self.leftSwitch setOn:setting animated:YES];
+    [self.rightSwitch setOn:setting animated:YES];
+}
+
+- (IBAction)buttonPressed:(id)sender {
+}
+
+
+- (IBAction)sliderChanged:(UISlider *)sender
+{
+    int progressAsInt = lroundf(sender.value);
+    self.sliderLabel.text = [NSString stringWithFormat:@"%d", progressAsInt];
+}
+
 
 
 

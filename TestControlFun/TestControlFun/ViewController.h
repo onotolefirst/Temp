@@ -8,12 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController 
+#define kSwitchesSegmentIndex 0
+
+@interface ViewController : UIViewController <UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *numberField;
+@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *leftSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *rightSwitch;
+@property (weak, nonatomic) IBOutlet UIButton *doSomeThingButton;
+
+
+
 - (IBAction)textFieldDoneEditing:(id)sender;
 - (IBAction)backgroundTap:(id)sender;
+- (IBAction)sliderChanged:(UISlider *)sender;
+- (IBAction)toggleControls:(UISegmentedControl *)sender;
+- (IBAction)switchChanged:(UISlider *)sender;
+- (IBAction)buttonPressed:(id)sender;
 
 
 
